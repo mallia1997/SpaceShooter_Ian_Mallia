@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         }
         else if (transform.position.y <-4.5f)
         {
-            transform.position = new Vector3(transform.position.x,-4.5f, 0);
+            transform.position = new Vector3(transform.position.x, -4.5f, 0);
         
         }
     
@@ -68,5 +68,14 @@ public class Player : MonoBehaviour
     // x position = -11.5
     // else if X position < -11.5
     // X position = 11.5
+    if (transform.position.x > 11.5f)
+    {
+        transform.position = new Vector3(-11.5f, transform.position.y, 0);
+    }
+    else if (transform.position.x <-11.5f)
+    {
+        transform.position = new Vector3(11.5f, transform.position.y , 0);
+    }
+
     }
 }
