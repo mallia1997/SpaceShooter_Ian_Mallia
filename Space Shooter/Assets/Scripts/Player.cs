@@ -19,6 +19,16 @@ public class Player : MonoBehaviour
 
     private float _speed = 3.5f;
 
+    [SerializeField]
+
+    private GameObject _laserPrefab;
+
+    [SerializeField]
+
+    private float _fireRate = 0.5f;
+
+    private float _nextFire = -1.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +37,24 @@ public class Player : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    //Update is called once per frame
+   void Update()
+   {
+        CalculateMovement();
+
+        //if I hit the space key and the game time is greater than next fire
+        //reset next fire = current time + fire rate
+
+        // if I hit the space key
+        // spawn laser
+        if(Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire)
+        {
+            FireLaser();       
+        }
+
+   }
+    
+     void CalculateMovement()
     {
 
         // local varriable - horizontalInput
@@ -64,18 +90,30 @@ public class Player : MonoBehaviour
         
         }
     
-    // if x position is > 11
-    // x position = -11.5
-    // else if X position < -11.5
-    // X position = 11.5
-    if (transform.position.x > 11.5f)
-    {
-        transform.position = new Vector3(-11.5f, transform.position.y, 0);
-    }
-    else if (transform.position.x <-11.5f)
-    {
-        transform.position = new Vector3(11.5f, transform.position.y , 0);
+        // if x position is > 11
+        // x position = -11.5
+        // else if X position < -11.5
+        // X position = 11.5
+        if (transform.position.x > 11.5f)
+        {
+            transform.position = new Vector3(-11.5f, transform.position.y, 0);
+        }
+        else if (transform.position.x <-11.5f)
+        {
+            transform.position = new Vector3(11.5f, transform.position.y , 0);
+        }
+
     }
 
+    void FireLaser()
+    {
+        _nextFire = Time.time + _fireRate;
+            
+            //calculate 0.8 units vertically from the player
+            Vector3 laserPos = transform.position + new Vector3(0, 0.8f, 0);
+
+
+            //Quaternion.identity = default rotation (0,0,0)
+            Instantiate(_laserPrefab, laserPos, Quaternion.identity); 
     }
 }

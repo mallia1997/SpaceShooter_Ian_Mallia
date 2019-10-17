@@ -367,3 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e200b5ef60acc443ba7a3cf2ee942d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 10
+  _laserPrefab: {fileID: 7655052140007389446, guid: 012b0183c843349998daada6b1b456e0,
+    type: 3}
+  _fireRate: 0.15
