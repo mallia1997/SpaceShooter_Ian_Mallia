@@ -29,12 +29,22 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if the "other" obkect's tag is player
+        //if the "other" object's tag is player
         //Damage the player 
         //Destroy this game object
+    
+        if (other.gameObject.CompareTag("Player"))
+        
+            Destroy(other.gameObject);
 
         //if the "other" object's tag is laser
         //Destroy the laser
         //Destroy this gameobject
+        
+            if (other.gameObject.CompareTag("Laser"))
+        
+            Destroy(other.gameObject);
+    
+
     }
 }
