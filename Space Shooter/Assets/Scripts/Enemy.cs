@@ -33,17 +33,22 @@ public class Enemy : MonoBehaviour
         //Damage the player 
         //Destroy this game object
     
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")){
         
             Destroy(other.gameObject);
-
+            Destroy(gameObject);
+        }
         //if the "other" object's tag is laser
         //Destroy the laser
         //Destroy this gameobject
         
-            if (other.gameObject.CompareTag("Laser"))
+            if (other.gameObject.CompareTag("Laser")){
         
             Destroy(other.gameObject);
+            Destroy(gameObject);
+            }
+            
+        
     
 
     }
