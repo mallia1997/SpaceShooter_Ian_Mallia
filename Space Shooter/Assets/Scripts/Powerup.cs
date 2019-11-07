@@ -16,7 +16,7 @@ public class Powerup : MonoBehaviour
         // move down at 3m/s
         //when we leave the screen, destroy us
 
-         if (transform.position.y <-6.5f)
+         if (transform.position.y <-8f)
          {
              Destroy(this.gameObject);
          }
@@ -25,10 +25,16 @@ public class Powerup : MonoBehaviour
     //on trigger enter
     //if I hit the player
     //Destroy us
+    // tell the player to activate the triple shot
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
+            Player player = other.GetComponent<Player>();
+            if (player != null)
+            {
+                player.ActivateTripleShot();
+            }
              Destroy(this.gameObject);
         }
     }

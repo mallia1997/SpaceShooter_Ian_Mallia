@@ -132,7 +132,8 @@ public class Player : MonoBehaviour
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
         }
 
-        else{
+        else
+        {
 
         // Calculate 0.8 units vertically from the player
         Vector3 laserPos = transform.position + new Vector3(0, 0.8f, 0);
@@ -155,5 +156,16 @@ public class Player : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+    }
+
+    public void ActivateTripleShot()
+    {
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotDownRoutine());
+    }
+    IEnumerator TripleShotDownRoutine()
+    {
+        yield return new WaitForSeconds(5f);
+        _isTripleShotActive = false;
     }
 }
