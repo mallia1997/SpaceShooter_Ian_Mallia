@@ -40,9 +40,21 @@ public class Player : MonoBehaviour
 
     private GameObject _tripleShotPrefab;
 
-    [SerializeField]
-    
+     
     private bool _isTripleShotActive = false;
+
+    [Header("Speed")]
+    [SerializeField]
+   
+    private float _speedModifier = 2f;
+
+    private bool _isSpeedActive = false;
+
+    [Header("Shield")]
+    [SerializeField]
+    private GameObject _shieldVisualizer;
+
+    private bool _isShieldActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +99,11 @@ public class Player : MonoBehaviour
             Input.GetAxis("Vertical"),
             0
         );
+
+        if(_isSpeedActive == true)
+        {
+            direction *= _speedModifier;
+        }
 
         transform.Translate(direction * _speed * Time.deltaTime);
 
@@ -145,6 +162,17 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        // if the shield power up is active
+        //turn off the shield visualizer
+        //shield power up  = false
+        //stop the function from continuing
+
+        if (_isShieldActive == true)
+        {
+            _shieldVisualizer.SetActive(false);
+            _isShieldActive = false;
+            return;
+        }
         //reduce players lives by 1
         _lives -= 1;
         //check if dead
@@ -163,9 +191,28 @@ public class Player : MonoBehaviour
         _isTripleShotActive = true;
         StartCoroutine(TripleShotDownRoutine());
     }
+
+    public void ActivateShield()
+    {
+        _isShieldActive = true;
+        _shieldVisualizer.SetActive(true);
+    }
+    public void ActivateSpeed()
+    {
+        _isSpeedActive = true;
+        StartCoroutine(SpeedPowerDownRoutine());
+
+    }
+
     IEnumerator TripleShotDownRoutine()
     {
         yield return new WaitForSeconds(5f);
         _isTripleShotActive = false;
+    }
+
+    IEnumerator SpeedPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5f);
+        _isSpeedActive = false;
     }
 }
