@@ -29,7 +29,11 @@ public class Player : MonoBehaviour
 
     private int _lives = 3;
 
+    private int _score = 0;
+
     private SpawnManager _spawnManager;
+
+    private UIManager _uiManager;
 
     [Header("Laser")]
     [SerializeField]
@@ -65,6 +69,13 @@ public class Player : MonoBehaviour
         if (_spawnManager == null)
         {
         Debug.LogError("the Spawn Manager script could not be found!");
+        }
+
+        _uiManager =GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("Ui manager not found"); 
         }
     }
 
@@ -214,5 +225,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         _isSpeedActive = false;
+    }
+
+    public void AddScore()
+
+    //add 1 point to score
+    // update UI
+    {
+        _score++;
+        _uiManager.SetScoreText(_score);
     }
 }
