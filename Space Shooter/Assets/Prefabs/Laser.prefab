@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2910821266099407334}
-  - component: {fileID: 1477812506203039706}
-  - component: {fileID: 950501743496616570}
-  - component: {fileID: 4499989629502537434}
+  - component: {fileID: 1225954816538297250}
+  - component: {fileID: 1825919325859636663}
+  - component: {fileID: 6592558869232017994}
   - component: {fileID: 114360632780907376}
   m_Layer: 0
   m_Name: Laser
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2910821266099407330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.38, z: 0}
+  m_LocalPosition: {x: 0, y: 0.99, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1477812506203039706
+--- !u!212 &1225954816538297250
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1392015743
+  m_SortingLayerID: -1364885679
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b030d335857201646be69703e678d6e5, type: 3}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &950501743496616570
+--- !u!61 &1825919325859636663
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,9 +106,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35, y: 3}
+  m_Size: {x: 0.4, y: 3}
   m_EdgeRadius: 0
---- !u!50 &4499989629502537434
+--- !u!50 &6592558869232017994
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

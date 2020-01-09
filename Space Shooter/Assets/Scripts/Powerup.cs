@@ -11,55 +11,53 @@ public enum PowerupType
 
 public class Powerup : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     [SerializeField]
     private float _speed = 3f;
+
     [SerializeField]
     private PowerupType _powerupType;
+
     // Update is called once per frame
     void Update()
-   
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
         // move down at 3m/s
-        //when we leave the screen, destroy us
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-         if (transform.position.y <-8f)
-         {
-             Destroy(this.gameObject);
-         }
+        // when we leave the screen, destroy us
+        if (transform.position.y < -8f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    //on trigger enter
-    //if I hit the player
-    //Destroy us
-    // tell the player to activate the triple shot
+    // on trigger enter
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        // if I hit the player
+        if (other.tag == "Player")
         {
+            // tell the player to activate the triple shot
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
                 switch (_powerupType)
                 {
                     case PowerupType.TripleShot:
-                    player.ActivateTripleShot();
-                    break;
+                        player.ActivateTripleShot();
+                        break;
 
                     case PowerupType.Speed:
-                    player.ActivateSpeed();
-                    break;
+                        player.ActivateSpeed();
+                        break;
 
                     case PowerupType.Shield:
-                    player.ActivateShield();
-                    break;
+                        player.ActivateShield();
+                        break;
                 }
-                
             }
-             Destroy(this.gameObject);
+
+            // destroy us
+            Destroy(this.gameObject);
         }
     }
-
 }

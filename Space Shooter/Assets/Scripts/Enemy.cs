@@ -9,9 +9,17 @@ public class Enemy : MonoBehaviour
 
     private Player _player;
 
+    private Animator _animator;
+
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+
+        _animator = GetComponent<Animator>();
+        if (_animator == null)
+        {
+            Debug.LogError("There is no Animator on the Enemy.");
+        }
     }
 
     // Update is called once per frame
@@ -37,16 +45,17 @@ public class Enemy : MonoBehaviour
         // Destroy this gameobject
         if (other.tag == "Player")
         {
-            //damage
-            //create a reference to the player script
-            //accesses the player script through the "other" variable
+            // Create a reference to the player script
+            // Accesses the player script through the "other" variable
             Player player = other.GetComponent<Player>();
-            //check that the script exists before using it
+
+            // Check that the script exists before using it.
             if (player != null)
             {
                 player.Damage();
             }
-            Destroy(this.gameObject);
+
+            EnemyDeath();
         }
 
         // if the "other" object's tag is Laser
@@ -57,7 +66,15 @@ public class Enemy : MonoBehaviour
             _player.AddScore();
 
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            EnemyDeath();
         }
+    }
+
+    void EnemyDeath()
+    {
+        _animator.SetTrigger("OnEnemyDeath");
+        _speed = 0;
+        
+        Destroy(this.gameObject, 2.633f);
     }
 }

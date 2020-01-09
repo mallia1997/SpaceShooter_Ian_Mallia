@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4356678754157027857
+--- !u!1 &5753052426692066816
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3514333973944714611}
+  - component: {fileID: 9065479933411666086}
   m_Layer: 0
   m_Name: Triple Shot
   m_TagString: Untagged
@@ -16,44 +16,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3514333973944714611
+--- !u!4 &9065479933411666086
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4356678754157027857}
+  m_GameObject: {fileID: 5753052426692066816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2930546586798454770}
-  - {fileID: 4514773654875899363}
-  - {fileID: 3446230752615122754}
+  - {fileID: 595005580534056266}
+  - {fileID: 822293714081532917}
+  - {fileID: 594924365718590340}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &58041144316591636
+--- !u!1001 &2316172820991282348
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3514333973944714611}
+    m_TransformParent: {fileID: 9065479933411666086}
     m_Modifications:
     - target: {fileID: 2910821266099407330, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_Name
-      value: Laser - L
+      value: Laser
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
@@ -102,23 +102,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5288a82066794a12b20360496d7fe87, type: 3}
---- !u!4 &2930546586798454770 stripped
+--- !u!4 &595005580534056266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
     type: 3}
-  m_PrefabInstance: {fileID: 58041144316591636}
+  m_PrefabInstance: {fileID: 2316172820991282348}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &555675690744467108
+--- !u!1001 &2316196053858359906
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3514333973944714611}
+    m_TransformParent: {fileID: 9065479933411666086}
     m_Modifications:
     - target: {fileID: 2910821266099407330, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_Name
-      value: Laser- R
+      value: Laser-R
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
@@ -177,33 +177,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5288a82066794a12b20360496d7fe87, type: 3}
---- !u!4 &3446230752615122754 stripped
+--- !u!4 &594924365718590340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
     type: 3}
-  m_PrefabInstance: {fileID: 555675690744467108}
+  m_PrefabInstance: {fileID: 2316196053858359906}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1640121965780503557
+--- !u!1001 &2525410268438053395
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3514333973944714611}
+    m_TransformParent: {fileID: 9065479933411666086}
     m_Modifications:
     - target: {fileID: 2910821266099407330, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_Name
-      value: Laser
+      value: Laser-L
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.78
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.05
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
         type: 3}
@@ -252,9 +252,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5288a82066794a12b20360496d7fe87, type: 3}
---- !u!4 &4514773654875899363 stripped
+--- !u!4 &822293714081532917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2910821266099407334, guid: e5288a82066794a12b20360496d7fe87,
     type: 3}
-  m_PrefabInstance: {fileID: 1640121965780503557}
+  m_PrefabInstance: {fileID: 2525410268438053395}
   m_PrefabAsset: {fileID: 0}

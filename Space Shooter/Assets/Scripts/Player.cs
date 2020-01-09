@@ -15,19 +15,22 @@ public class Player : MonoBehaviour
     // step 4 - optional value
 
     // Attribute - exposes the variable inside Unity
-    [Header("Player Option")]
+    [Header("Player Options")]
     [SerializeField]
     private float _speed = 3.5f;
+    
 
- 
     [SerializeField]
     private float _fireRate = 0.5f;
 
     private float _nextFire = -1.0f;
 
     [SerializeField]
-
     private int _lives = 3;
+
+    // reference the two engine gameobjects
+    [SerializeField]
+    private GameObject _leftEngine, _rightEngine;
 
     private int _score = 0;
 
@@ -35,21 +38,20 @@ public class Player : MonoBehaviour
 
     private UIManager _uiManager;
 
+    private GameManager _gameManager;
+
     [Header("Laser")]
     [SerializeField]
     private GameObject _laserPrefab;
 
     [Header("Triple Shot")]
     [SerializeField]
-
     private GameObject _tripleShotPrefab;
 
-     
     private bool _isTripleShotActive = false;
 
     [Header("Speed")]
     [SerializeField]
-   
     private float _speedModifier = 2f;
 
     private bool _isSpeedActive = false;
@@ -68,14 +70,19 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         if (_spawnManager == null)
         {
-        Debug.LogError("the Spawn Manager script could not be found!");
+            Debug.LogError("The Spawn Manager script could not be found!");
         }
 
-        _uiManager =GameObject.Find("Canvas").GetComponent<UIManager>();
-
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         if (_uiManager == null)
         {
-            Debug.LogError("Ui manager not found"); 
+            Debug.LogError("The UI Manager script could not be found!");
+        }
+
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (_gameManager == null)
+        {
+            Debug.LogError("The Game Manager script could not be found!");
         }
     }
 
@@ -111,7 +118,7 @@ public class Player : MonoBehaviour
             0
         );
 
-        if(_isSpeedActive == true)
+        if (_isSpeedActive == true)
         {
             direction *= _speedModifier;
         }
@@ -152,46 +159,63 @@ public class Player : MonoBehaviour
         _nextFire = Time.time + _fireRate;
 
         // if triple shot is active
-        // instantiate the triple shot prefb
+        // instantiate the triple shot prefab
         // else fire 1 laser
 
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
         }
-
         else
         {
+            // Calculate 0.8 units vertically from the player
+            Vector3 laserPos = transform.position + new Vector3(0, 0.8f, 0);
 
-        // Calculate 0.8 units vertically from the player
-        Vector3 laserPos = transform.position + new Vector3(0, 0.8f, 0);
-
-        // Quaternion.identity = default rotation (0, 0, 0).
-        Instantiate(_laserPrefab, laserPos, Quaternion.identity);
+            // Quaternion.identity = default rotation (0, 0, 0).
+            Instantiate(_laserPrefab, laserPos, Quaternion.identity);
         }
     }
 
     public void Damage()
     {
-        // if the shield power up is active
-        //turn off the shield visualizer
-        //shield power up  = false
-        //stop the function from continuing
-
+        // if the shield powerup is active
+        // turn off the shield visualizer
+        // shield powerup = false
+        // stop the function from continuing
         if (_isShieldActive == true)
         {
             _shieldVisualizer.SetActive(false);
             _isShieldActive = false;
             return;
         }
-        //reduce players lives by 1
+
+        // reduce the player's lives by 1
         _lives -= 1;
-        //check if dead
-        //destroy us
+
+        // if lives = 2
+        // show the left engine fire
+        // else if lives = 1
+        // show the right engine fire
+        if (_lives == 2)
+        {
+            _leftEngine.SetActive(true);
+        }
+        else if (_lives == 1)
+        {
+            _rightEngine.SetActive(true);
+        }
+
+        // update the UI
+        _uiManager.UpdateLives(_lives);
+
+        // check if dead
+        // destroy us
         if (_lives < 1)
         {
-           //Communicate with the spawn manager
-           _spawnManager.OnPlayerDeath();
+            // Communicate with the Spawn Manager
+            // tell it to stop spawning
+            _spawnManager.OnPlayerDeath();
+            _gameManager.GameOver();
 
             Destroy(this.gameObject);
         }
@@ -200,7 +224,13 @@ public class Player : MonoBehaviour
     public void ActivateTripleShot()
     {
         _isTripleShotActive = true;
-        StartCoroutine(TripleShotDownRoutine());
+        StartCoroutine(TripleShotPowerDownRoutine());
+    }
+
+    public void ActivateSpeed()
+    {
+        _isSpeedActive = true;
+        StartCoroutine(SpeedPowerDownRoutine());
     }
 
     public void ActivateShield()
@@ -208,14 +238,8 @@ public class Player : MonoBehaviour
         _isShieldActive = true;
         _shieldVisualizer.SetActive(true);
     }
-    public void ActivateSpeed()
-    {
-        _isSpeedActive = true;
-        StartCoroutine(SpeedPowerDownRoutine());
 
-    }
-
-    IEnumerator TripleShotDownRoutine()
+    IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(5f);
         _isTripleShotActive = false;
@@ -228,11 +252,11 @@ public class Player : MonoBehaviour
     }
 
     public void AddScore()
-
-    //add 1 point to score
-    // update UI
     {
+        // adds 1 point to score
         _score++;
+
+        // update the UI
         _uiManager.SetScoreText(_score);
     }
 }

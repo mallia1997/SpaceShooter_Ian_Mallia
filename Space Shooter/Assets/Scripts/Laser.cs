@@ -18,11 +18,12 @@ public class Laser : MonoBehaviour
         // Destory the object
         if (transform.position.y > 7f)
         {
-           // destroy the parnet object if there is one 
-           if (transform.parent != null)
-           {
-               Destroy (transform.parent.gameObject);
-           }
+            // destroy the parent object if there is one
+            if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
+            }
+
             Destroy(this.gameObject);
         }
     }
